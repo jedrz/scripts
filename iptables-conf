@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# set up iptables (not mine)
+
+# stop the iptables
+/etc/rc.d/iptables stop
+
+iptables -F
+iptables -X
+iptables -t nat -X
+iptables -t nat -F
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT 
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A FORWARD -o lo -j ACCEPT
+iptables -A INPUT -j ACCEPT -m state --state ESTABLISHED,RELATED
+iptables -A FORWARD -j ACCEPT -m state --state ESTABLISHED,RELATED
+
+# rtorrent
+#iptables -A INPUT -s 0/0 -p tcp --dport 6892 -j ACCEPT
+#iptables -A INPUT -s 0/0 -p udp --dport 6892 -j ACCEPT
+
+# the end
+/etc/rc.d/iptables save
+/etc/rc.d/iptables start
+
+# print the iptables
+iptables -L;

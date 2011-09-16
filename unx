@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# make not hidden files not executeable
+# useful when copying files from ntfs partition...
+
+find "$1" -executable -type f ! -regex ".*/\..*" -exec chmod -x {} \;

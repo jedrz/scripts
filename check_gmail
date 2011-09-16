@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# not mine
+
+gmail_login="" # login
+gmail_password="" # password
+
+count="$(wget --secure-protocol=TLSv1 --timeout=3 -t 1 -q -O - \
+https://${gmail_login}:${gmail_password}@mail.google.com/mail/feed/atom \
+--no-check-certificate | grep 'fullcount' \
+| sed -e 's/.*<fullcount>//;s/<\/fullcount>.*//' 2>/dev/null)"
+
+if [ -z "$count" ]; then
+    echo "-1"
+else
+    echo "$count"
+fi

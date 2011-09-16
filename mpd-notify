@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# show current song
+# use mpc
+
+com="%artist% - %title%"
+
+stat="$(mpc -f "${com}" | sed -n '2p')"
+if [ ! "$stat" ]; then
+    echo "stop"
+else
+    #state="$(mpc -f "${com}" | sed -n -e 's/^\(\[.*\]\).*/\1/p')"
+    playing="$(mpc -f "${com}" | head -n 1)"
+    echo ${playing}
+fi
