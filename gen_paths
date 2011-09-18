@@ -5,10 +5,7 @@
 # instead of diff use comm
 
 if [ $1 ] && [ $2 ]; then
-    tmp_file=$(mktemp)
-    find "$1" ! -regex ".*/\..*" > "$tmp_file"
-    sort -o "$2" "$tmp_file"
-    rm -f "$tmp_file"
+    find "$1" ! -regex ".*/\..*" | sort > "$2"
 else
     echo "usage: <path to generate> <path to output file>"
     exit 1
