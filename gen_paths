@@ -5,7 +5,8 @@
 # instead of diff use comm
 
 if [ $1 ] && [ $2 ]; then
-    find "$1" ! -regex ".*/\..*" | sort > "$2"
+    find "$1" ! -regex ".*/\..*" > "$2"
+    sort -o "$2" "$2"
 else
     echo "usage: <path to generate> <path to output file>"
     exit 1
