@@ -3,10 +3,9 @@
 # a script changing the song using mpc
 # useful for last.fm site to scrobble more songs :)
 
-while [ True ]; do
+while sleep 3; do
     percent="$(mpc | sed -n -e 's/.*(\(.*\)%)/\1/p')"
     if [ $percent ] && [ $percent -gt 50 ]; then
         mpc next > /dev/null
     fi
-    sleep 3
 done
