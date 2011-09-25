@@ -4,7 +4,7 @@
 # needed for manual (!) sync without external hard drive...
 # instead of diff use comm
 
-if [ $1 ] && [ $2 ]; then
+if [[ $1 ]] && [[ $2 ]]; then
     find "$1" ! -regex ".*/\..*" | sort > "$2"
 else
     echo "usage: <path to generate> <path to output file>"

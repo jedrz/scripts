@@ -5,7 +5,7 @@
 
 while sleep 3; do
     percent="$(mpc | sed -n -e 's/.*(\(.*\)%)/\1/p')"
-    if [ $percent ] && [ $percent -gt 50 ]; then
+    if [[ $percent ]] && [[ $percent -gt 50 ]]; then
         mpc next > /dev/null
     fi
 done
