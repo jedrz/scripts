@@ -3,10 +3,10 @@
 # show current song
 # use mpc
 
-com="%artist% - %title%"
+command="%artist% - %title%"
 
-stat="$(mpc -f "${com}" | sed -n '2p')"
-if [ ! "$stat" ]; then
+state="$(mpc -f "${com}" | sed -n '2p')"
+if [[ ! "$state" ]]; then
     echo "stop"
 else
     #state="$(mpc -f "${com}" | sed -n -e 's/^\(\[.*\]\).*/\1/p')"
