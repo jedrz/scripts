@@ -3,13 +3,13 @@
 # show current song
 # use mpc
 
-command="%artist% - %title%"
+options="%artist% - %title%"
 
-state="$(mpc -f "${com}" | sed -n '2p')"
+state="$(mpc -f "$options" | sed -n '2p')"
 if [[ ! "$state" ]]; then
     echo "stop"
 else
-    #state="$(mpc -f "${com}" | sed -n -e 's/^\(\[.*\]\).*/\1/p')"
-    playing="$(mpc -f "${com}" | head -n 1)"
-    echo ${playing}
+    #state="$(mpc -f "$options" | sed -n -e 's/^\(\[.*\]\).*/\1/p')"
+    playing="$(mpc -f "$options" | head -n 1)"
+    echo "$playing"
 fi
