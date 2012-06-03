@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# set up iptables (not mine)
+# from the Internet, I don't remember the source
+
+# set up iptables
 
 # stop the iptables
 /etc/rc.d/iptables stop

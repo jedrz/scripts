@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# from archwiki
 # turn on or off touchpad
 
 if [[ $(synclient -l | grep TouchpadOff | gawk -F '= ' '{ print $2 }') -eq 0 ]]; then

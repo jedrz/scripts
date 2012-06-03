@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # backup a folder using rsync
-# $1 - folder to backup
-# $2 - location to backup
+# $1 - source
+# $2 - destination
 
 rsync -a --delete -v "$1" "$2"

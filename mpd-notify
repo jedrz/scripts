@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# show current song
-# use mpc
+# show current song using mpc
 
 options="%artist% - %title%"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# not mine
+# from polish Debian forum
 
 gmail_login="" # login
 gmail_password="" # password
