@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# start emacsclient and optionally run daemon if not started yet
+
+exec emacsclient --create-frame --alternate-editor="" "$@"
