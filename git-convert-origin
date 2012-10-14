@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Convert ssh remotes to https for given paths to git repositories.
+
+call_path="$(pwd)"
+for path in "$@"; do
+    cd "$path"
+    # Check if origin points at ssh address.
+    if git remote -v | grep "git@" &> /dev/null; then
+        url="$(git remote -v \
+            | head -n 1 \
+            | sed -e 's/.*\tgit@\(.*\) .*/\1/' \
+                  -e 's|:|/|' \
+                  -e 's|\(.*\)|https://\1|')"
+        echo -n "Are you sure you want replace origin with $url ? (y/n) "
+        read ans
+        [[ "$ans" = "y" ]] && git remote set-url origin "$url"
+    fi
+    cd "$call_path"
+done
