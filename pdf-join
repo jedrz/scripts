@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Join multiple pdfs into one using Ghostscript.
+
+# First argument is output file, the rest pdfs to join.
+
+/usr/bin/gs \
+    -dNOPAUSE \
+    -dBATCH \
+    -sDEVICE=pdfwrite \
+    -sOutputFile="$1" \
+    "${@:2}"
