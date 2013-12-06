@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Compress given pdf using ghostscript.
+
+# http://www.tjansson.dk/2012/04/compressing-pdfs-using-ghostscript-under-linux/
+
+filename=$(basename "$1")
+no_ext="${filename%.*}"
+output_file="${no_ext}-compressed.pdf"
+
+/usr/bin/gs \
+    -sDEVICE=pdfwrite \
+    -dCompatibilityLevel=1.4 \
+    -dPDFSETTINGS=/default \
+    -dNOPAUSE \
+    -dQUIET \
+    -dBATCH \
+    -sOutputFile="$output_file" \
+    "$1"
