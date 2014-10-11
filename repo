@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# sprawdzenie występowania zainstalowanych pakietów w danych repozytoriach
+
+# znaleziony błąd 28-07-09: należy sprawdzać także wersje programów
+# a nie tylko nazwy FIXED
+
+for a in $(pacman -Q | awk -F " " '{ print $1$2 }'); do
+    for b in $(pacman -Sl $1 | awk -F " " '{ print $2$3 }'); do
+        if [[ "$a" = "$b" ]]; then
+            echo $a
+        fi
+    done
+done

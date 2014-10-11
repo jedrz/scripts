@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# skrypt wyświetla ilość i rozmiar dostępnych aktualizacji
+
+# ilość pakietów
+count=0
+# rozmiar w kb
+size=0
+# lista pakietów do aktualizacji oddzielonych spacją
+pkgs=""
+
+# buduję listę pakietów
+for pkg in $(pacman -Qu | cut -d ' ' -f 1); do
+    pkgs="$pkgs $pkg"
+done
+
+# jeśli nie znaleziono pakietów
+if [[ ! "$pkgs" ]]; then
+    echo "system aktualny"
+    exit
+fi
+
+# iteruje po rozmiarze
+for pkgsize in $(pacman -Si $pkgs | grep "Ilość danych do pobrania" | \
+    cut -d ':' -f 2 | sed -e 's/[[:space:]K]//g;s/,.*//'); do
+    # dodaje rozmiar pakietu do size
+    let size+=pkgsize
+    # zwiększam ilość pakietów
+    let count+=1
+done
+
+if [[ $count -eq 1 ]]; then
+    echo "$count pkg, $[size/1024] mb"
+else
+    echo "$count pkgs, $[size/1024] mb"
+fi
