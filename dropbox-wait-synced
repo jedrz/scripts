@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Waits until dropbox is synchronized.
+
+while dropbox | grep "Aktualny"; do
+    sleep 60
+done
