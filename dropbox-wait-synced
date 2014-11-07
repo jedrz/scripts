@@ -2,6 +2,6 @@
 
 # Waits until dropbox is synchronized.
 
-while dropbox | grep "Aktualny"; do
+while ! dropbox status | grep "Aktualny"; do
     sleep 60
 done
