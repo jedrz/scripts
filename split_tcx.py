@@ -95,4 +95,4 @@ def chunks(a, n):
 
 
 if __name__ == '__main__':
-    split_tcx(sys.argv[0])
+    split_tcx(sys.argv[1], int(sys.argv[2]))
