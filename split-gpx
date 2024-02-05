@@ -1,0 +1,17 @@
+#!/bin/bash
+
+splitTrack() {
+  # $1 shall be the gpx file to split
+  pfx="${1%.*}-"
+  gpsbabel -i gpx -f "$1" -t -o csv -F - \
+  | split -d -l "$2" --additional-suffix=.csv - "$pfx"
+
+  for f in "$pfx"*.csv; do
+    fout=${f%.*}.gpx
+    gpsbabel -i csv -f "$f" -x transform,trk=wpt -x nuketypes,waypoints \
+             -o gpx -F "$fout"
+    rm "$f"
+  done
+}
+
+splitTrack $1 $2
